@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthvault India - Medical Records Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
+</head>
+<body>
+    
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Healthvault India</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#register">Register</a></li>
+            </ul>
+            <div class="nav-user" id="navUser" aria-live="polite"></div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Simplifying Healthcare Records Management in India</h1>
+            <p>Access your medical records anytime, anywhere. Share them securely with healthcare providers.</p>
+            <a href="#register" class="cta-button">Get Started</a>
+        </div>
+    </section>
+    <section id="digital-records" class="records-section">
+        <div class="container">
+            <h2>My Digital Records</h2>
+            <div id="digitalRecordsList" class="records-grid">
+                <!-- Saved records will appear here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Hospitals Directory -->
+    <section id="hospitals" class="hospitals-section">
+        <div class="container">
+            <h2>Hospitals Near You</h2>
+            <p class="muted" style="color:black;">Search hospitals, view details, book appointments or chat with doctors.</p>
+            <div class="hospital-controls"style="color: green;">
+                <input id="hospitalSearch" type="search" placeholder="Search hospitals or specialties" />
+            </div>
+            <div id="hospitalsList" class="hospitals-grid">
+                <!-- Hospital cards rendered here -->
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features";backkground-color: #f0f8ff>
+        <div class="container">
+            <h2>Our Features</h2>
+            <div class="features-grid"style="color: green;background-color: #f0f8ff;">
+                <div id="digitalFeatureCard" class="feature-card" style="color: green;">
+                        <div class="feature-icon">
+                            <i class="fas fa-sticky-note note-icon" aria-hidden="true"></i>
+                            <i class="fas fa-folder-medical main-icon" aria-hidden="true"></i>
+                        </div>
+                        <h3>Digital Records</h3>
+                        <p>Store all your medical records digitally in one secure place</p>
+                </div>
+                <div class="feature-card"style="color:green">
+                    <i class="fas fa-share-alt"></i>
+                    <h3>Easy Sharing</h3>
+                    <p>Share your medical history instantly with healthcare providers</p>
+                </div>
+                <div class="feature-card"style="color: green;">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Access</h3>
+                    <p>Access your records on any device, anytime you need</p>
+                </div>
+                <div class="feature-card"style="color: green;">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Storage</h3>
+                    <p>Your data is encrypted and protected with the highest security standards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anchors for header links -->
+    <a id="login"></a>
+    <a id="register"></a>
+    <section id="auth" class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form active">
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="submit-button">Login</button>
+                    <p class="auth-switch">
+                        Don't have an account? 
+                        <a href="#" id="showRegister">Register here</a>
+                    </p>
+                </form>
+
+                <!-- Registration Form -->
+                <form id="registerForm" class="auth-form">
+                    <h2>Register</h2>
+                    <div class="form-group">
+                        <label for="reg-name">Full Name</label>
+                        <input type="text" id="reg-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-confirm-password">Confirm Password</label>
+                        <input type="password" id="reg-confirm-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-type">User Type</label>
+                        <select id="reg-type" required>
+                            <option value="patient">Patient</option>
+                            <option value="doctor">Healthcare Provider</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-button">Register</button>
+                    <p class="auth-switch">
+                        Already have an account? 
+                        <a href="#" id="showLogin">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+    <img src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?cs=srgb&dl=pexels-pixabay-40568.jpg&fm=jpg" alt="Healthcare" class="auth-image" />
+
+    <!-- Modal for basic record info -->
+    <div id="recordModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close">&times;</button>
+            <h3>Add Basic Medical Record</h3>
+            <form id="recordForm">
+                <div class="form-group">
+                    <label for="rec-disease">Disease / Condition</label>
+                    <input type="text" id="rec-disease" name="disease" required>
+                </div>
+                <div class="form-group">
+                    <label for="rec-date">Date</label>
+                    <input type="date" id="rec-date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="rec-hospital">Hospital / Clinic</label>
+                    <input type="text" id="rec-hospital" name="hospital">
+                </div>
+                <div class="form-group">
+                    <label for="rec-doctor">Doctor</label>
+                    <input type="text" id="rec-doctor" name="doctor">
+                </div>
+                <div class="form-group">
+                    <label for="rec-duration">Duration</label>
+                    <input type="text" id="rec-duration" name="duration" placeholder="e.g., 2 weeks">
+                </div>
+                <div class="form-group">
+                    <label for="rec-notes">Notes</label>
+                    <textarea id="rec-notes" name="notes" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rec-image">Upload Image (optional)</label>
+                    <input type="file" id="rec-image" name="image" accept="image/*">
+                    <small style="color: #666;">JPG, PNG, or other image formats (max ~5MB recommended)</small>
+                </div>
+                <button type="submit" class="submit-button">Save Record</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Bottom info bar: shows logged-in user and location -->
+    <div id="bottomInfo" class="bottom-info" aria-live="polite">
+        <div class="info-content">
+            <div class="user-basic">
+                <strong id="bi-name">Guest</strong>
+                <span id="bi-email">Not signed in</span>
+            </div>
+            <div class="user-stats">
+                <span id="bi-count">Records: 0</span>
+                <span id="bi-last">Last: -</span>
+            </div>
+        </div>
+    </div>
+    <!-- Modal to view records (overlay) -->
+    <div id="viewRecordsModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close">&times;</button>
+            <h3>My Digital Records</h3>
+            <div id="viewRecordsList" class="records-grid">
+                <!-- Records will be rendered here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hospital Detail Modal -->
+    <div id="hospitalModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close">&times;</button>
+            <div id="hospitalDetail">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointment Modal -->
+    <div id="appointmentModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-btn" aria-label="Close">&times;</button>
+            <h3>Book an Appointment</h3>
+            <form id="appointmentForm">
+                <div class="form-group"><label for="appt-name">Your Name</label><input id="appt-name" required /></div>
+                <div class="form-group"><label for="appt-email">Email</label><input id="appt-email" type="email" required /></div>
+                <div class="form-group"><label for="appt-date">Date</label><input id="appt-date" type="date" required /></div>
+                <div class="form-group"><label for="appt-time">Time</label><input id="appt-time" type="time" required /></div>
+                <input type="hidden" id="appt-hospital-id" />
+                <button type="submit" class="submit-button">Request Appointment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chat window (demo) -->
+    <div id="chatWindow" class="chat-window" aria-hidden="true">
+        <div class="chat-header">
+            <div id="chatTitle">Chat</div>
+            <button id="closeChat" class="close-btn">×</button>
+        </div>
+        <div id="chatBody" class="chat-body"></div>
+        <div class="chat-input">
+            <input id="chatInput" placeholder="Type a message..." />
+            <button id="sendChat">Send</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <!-- Newsletter -->
+                <div class="footer-newsletter">
+                    <div class="footer-logo">
+                        <img src="https://i.ibb.co/wN3X7zd9/Gemini-Generated-Image-4g0sw04g0sw04g0s-1.png" alt="MNT Logo" class="mnt-logo" height="40px" >
+                    </div>
+                    <div class="newsletter-content">
+                        <h4>Get our newsletter</h4>
+                        <p>Stay up to date with the latest health news, tips, and updates from MNT.</p>
+                    </div>
+                    <form id="newsletterForm" class="newsletter-form">
+                        <input id="newsletterEmail" type="email" placeholder="Enter your email" required />
+                        <button type="submit">SUBSCRIBE</button>
+                    </form>
+                </div>
+                <!-- Navigation Links -->
+                <div class="footer-links">
+                    <div class="footer-links-col">
+                        <a href="#">About Us</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                    <div class="footer-links-col">
+                        <a href="#">Health Topics</a>
+                        <a href="#">Health Hubs</a>
+                        <a href="#">Medical Affairs</a>
+                        <a href="#">Content Integrity</a>
+                    </div>
+                </div>
+            </div>
+            <script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="KfN5iMH6FWo1fWzY3w9Io";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+            <!-- Social Icons -->
+            <div class="footer-social">
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Flipboard"><i class="fab fa-flipboard"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
